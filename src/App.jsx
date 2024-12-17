@@ -5,6 +5,8 @@ function App() {
 
   // Variabile per l'input
   const [postTitle, setPostTitle] = useState("");
+  const [postDescription, setPostDescription] = useState("");
+  const [postAuthor, setPostAuthor] = useState("");
 
   /**
    *funzione che aggiunge un nuovo post alla lista
@@ -16,7 +18,9 @@ function App() {
     // Creo l'oggetto del nuovo post
     const newPost = {
       id: Date.now(),
-      title: postTitle
+      title: postTitle,
+      description: postDescription,
+      author: postAuthor
     }
 
     // Creo la copia della lista, e aggiungo il nuovo Post
@@ -27,6 +31,7 @@ function App() {
 
     // Ripulisco il campo del form
     setPostTitle("");
+    setPostDescription("");
   };
 
   /**
@@ -52,6 +57,8 @@ function App() {
                   <div className="card">
                     <div className="card-body">
                       <h4>{curPost.title}</h4>
+                      <p>{curPost.description}</p>
+                      <h6>{curPost.author}</h6>
                       <button onClick={() => {cancella(curPost.id)}} className="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                   </div>
@@ -75,6 +82,26 @@ function App() {
               id="postTitle"
               value={postTitle}
               onChange={(event) => setPostTitle(event.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="postDescription">Contenuto del Post</label>
+              <textarea
+              type="text"
+              className="form-control"
+              id="postDescription"
+              value={postDescription}
+              onChange={(event) => setPostDescription(event.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="postAuthor">Autore del Post</label>
+              <input
+              type="text"
+              className="form-control"
+              id="postAuthor"
+              value={postAuthor}
+              onChange={(event) => setPostAuthor(event.target.value)}
               />
             </div>
             <button type="submit" className="btn btn-primary">Aggiungi</button>
